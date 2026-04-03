@@ -11,8 +11,8 @@ const adminAuth = (req, res, next) => {
   const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
   const [username, password] = credentials.split(':');
 
-  const correctUsername = process.env.ADMIN_USERNAME || 'admin';
-  const correctPassword = process.env.ADMIN_PASSWORD || 'Admin123';
+  const correctUsername = process.env.ADMIN_USERNAME || 'legalpapersindia@gmail.com';
+  const correctPassword = process.env.ADMIN_PASSWORD || 'Admin@#7890';
 
   if (username === correctUsername && password === correctPassword) {
     return next(); // Auth successful
