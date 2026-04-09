@@ -277,7 +277,7 @@ export default function FssaiRegistrationForm() {
       "ctl00$ContentPlaceHolder1$ddlyears": "",
       "ctl00$ContentPlaceHolder1$txtDate": new Date().toISOString().slice(0, 19).replace("T", " "),
       serviceCategory: "fssaiReg",
-      leadSource: "fssaifood-india.org",
+      leadSource: "foodindia-registration.org",
       _timestamp: Date.now(),
       _formVersion: "2025-03",
     };

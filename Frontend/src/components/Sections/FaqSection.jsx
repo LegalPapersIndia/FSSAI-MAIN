@@ -7,7 +7,6 @@ export default function FSSAIFAQSection() {
       className="py-16 md:py-24 bg-gradient-to-br from-orange-50 via-white to-green-50"
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-gray-800 mb-10">
           FSSAI License – Frequently Asked Questions
@@ -26,7 +25,6 @@ export default function FSSAIFAQSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-
           {/* LEFT COLUMN */}
           <div className="space-y-6">
             {[
@@ -42,9 +40,16 @@ export default function FSSAIFAQSection() {
                   <>
                     <p>FSSAI issues three types of licenses:</p>
                     <ul className="list-disc pl-6 mt-2 space-y-1">
-                      <li><b>Basic Registration:</b> Up to ₹12 lakh turnover</li>
-                      <li><b>State License:</b> ₹12 lakh – ₹20 crore turnover</li>
-                      <li><b>Central License:</b> Above ₹20 crore or multi-state operations</li>
+                      <li>
+                        <b>Basic Registration:</b> Up to ₹12 lakh turnover
+                      </li>
+                      <li>
+                        <b>State License:</b> ₹12 lakh – ₹20 crore turnover
+                      </li>
+                      <li>
+                        <b>Central License:</b> Above ₹20 crore or multi-state
+                        operations
+                      </li>
                     </ul>
                   </>
                 ),
@@ -115,11 +120,6 @@ export default function FSSAIFAQSection() {
                   "Under Section 39 of the FSS Act, violations can attract penalties up to ₹1,00,000. Filing false complaints may lead to penalties between ₹50,000 and ₹1,00,000.",
               },
               {
-                title: "Is FSSAI license mandatory for food businesses?",
-                content:
-                  "Yes. Every food business operator involved in manufacturing, packaging, storage, distribution, or sale of food must obtain an FSSAI license or registration.",
-              },
-              {
                 title: "What are FSSAI’s research responsibilities?",
                 content: (
                   <ul className="list-disc pl-6 space-y-1">
@@ -129,6 +129,12 @@ export default function FSSAIFAQSection() {
                   </ul>
                 ),
               },
+              {
+                title: "Is FSSAI license mandatory for food businesses?",
+                content:
+                  "Yes. Every food business operator involved in manufacturing, packaging, storage, distribution, or sale of food must obtain an FSSAI license or registration.",
+              },
+
               {
                 title: "Who are the members of FSSAI and what is their tenure?",
                 content:
@@ -158,7 +164,6 @@ export default function FSSAIFAQSection() {
               </details>
             ))}
           </div>
-
         </div>
       </div>
     </section>
