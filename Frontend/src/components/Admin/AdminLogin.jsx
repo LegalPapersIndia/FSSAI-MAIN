@@ -10,7 +10,7 @@ export default function AdminLogin() {
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -18,17 +18,17 @@ export default function AdminLogin() {
     const correctUsername = import.meta.env.VITE_ADMIN_USERNAME;
     const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD;
 
-    console.log("VITE_ADMIN_USERNAME:", correctUsername);   // Debugging ke liye
-    console.log("VITE_ADMIN_PASSWORD:", correctPassword);
-
     if (!correctUsername || !correctPassword) {
-      setError("❌ .env file mein credentials nahi hain. Check karo!");
+      setError("❌ Environment variables missing. Check .env file.");
       setLoading(false);
       return;
     }
 
     if (username.trim() === correctUsername && password === correctPassword) {
+      // Store both login flag and credentials for Basic Auth
       sessionStorage.setItem('adminLoggedIn', 'true');
+      sessionStorage.setItem('adminCredentials', btoa(`${correctUsername}:${correctPassword}`));
+      
       navigate('/admin/dashboard');
     } else {
       setError('❌ Invalid username or password');
@@ -55,8 +55,8 @@ export default function AdminLogin() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 text-lg"
-              placeholder="admin"
+              className="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="Enter username"
               required
             />
           </div>
@@ -67,8 +67,8 @@ export default function AdminLogin() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 text-lg"
-              placeholder="Admin@123"
+              className="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="Enter password"
               required
             />
           </div>
@@ -87,10 +87,6 @@ export default function AdminLogin() {
             {loading ? 'Logging in...' : 'Login to Dashboard'}
           </button>
         </form>
-
-        <p className="text-center text-xs text-gray-400 mt-8">
-          Secured Admin Panel • FSSAI Management
-        </p>
       </div>
     </div>
   );
