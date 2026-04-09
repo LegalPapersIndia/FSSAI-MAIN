@@ -1,3 +1,4 @@
+// src/App.jsx
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
@@ -16,26 +17,22 @@ import HeroCarousel from './components/Sections/HeroCarousel';
 import ContactPage from './components/Pages/ContactPage';
 import TermsAndConditionsPage from './components/Pages/TermsAndConditionsPage';
 import RefundPolicyPage from './components/Pages/RefundPolicyPage';
+import FSSAIPolicyPage from './components/Pages/FSSAIPolicyPage';
 import ScrollToHash from './components/common/ScrollToHash';
 
 import AdminDashboard from './components/Admin/AdminDashboard';
 import AdminLogin from './components/Admin/AdminLogin';
 
 
-// ✅ Clear only form-related storage (safe)
 function ClearStorageOnLoad() {
   useEffect(() => {
     localStorage.removeItem("fssaiFormDraft");
     sessionStorage.removeItem("fssaiSubmittedData");
-
     console.log("✅ Storage cleared on app initial load");
   }, []);
-
   return null;
 }
 
-
-// ✅ Scroll to top on route change
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -44,30 +41,26 @@ function ScrollToTop() {
   return null;
 }
 
-
-// ✅ Protected Route for Admin
 function ProtectedRoute({ children }) {
   const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
-
   if (!isLoggedIn) {
     return <Navigate to="/admin" replace />;
   }
-
   return children;
 }
 
-
-// ✅ Marquee
-function GlobalMarquee() {
+function PrivateConsultancyMarquee() {
   return (
-    <div className="bg-gradient-to-r from-green-600 to-teal-700 text-white shadow-md overflow-hidden">
+    <div className="bg-gradient-to-r from-green-700 to-teal-800 text-white py-2.5 shadow-md overflow-hidden z-10">
       <div className="marquee-container relative w-full">
-        <div className="marquee inline-flex whitespace-nowrap text-sm font-medium tracking-wide py-2 animate-marquee">
+        <div className="marquee inline-flex whitespace-nowrap text-sm font-medium tracking-wide animate-marquee">
           <span className="mx-16">
-            This is a private consultancy self-registration portal for FSSAI license. Portal fees are consultancy in nature.
+            This is a private consultancy self-registration portal for FSSAI license. 
+            Portal fees are consultancy in nature.
           </span>
           <span className="mx-16">
-            This is a private consultancy self-registration portal for FSSAI license. Portal fees are consultancy in nature.
+            This is a private consultancy self-registration portal for FSSAI license. 
+            Portal fees are consultancy in nature.
           </span>
         </div>
       </div>
@@ -75,15 +68,11 @@ function GlobalMarquee() {
   );
 }
 
-
-// ✅ Back to Top
 function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      setVisible(window.scrollY > 400);
-    };
+    const toggleVisibility = () => setVisible(window.scrollY > 400);
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
@@ -100,11 +89,9 @@ function BackToTop() {
   );
 }
 
-
 function AppContent() {
   const location = useLocation();
   const isHome = location.pathname === '/';
-  const showMarquee = !isHome;
   const showNavbar = isHome;
 
   return (
@@ -112,8 +99,6 @@ function AppContent() {
 
       <ClearStorageOnLoad />
       <TopBar />
-
-      {showMarquee && <GlobalMarquee />}
 
       {showNavbar && (
         <Navbar
@@ -139,18 +124,29 @@ function AppContent() {
         />
       )}
 
+      {showNavbar && <PrivateConsultancyMarquee />}
+
+      {showNavbar && (
+        <div className="-mt-4 md:-mt-5 lg:-mt-6">   {/* ← Space kam kiya yahan */}
+          <HeroCarousel />
+        </div>
+      )}
+
+      {!showNavbar && <HeroCarousel />}
+
       <ScrollToTop />
       <ScrollToHash />
 
       <main className="flex-grow">
         <Routes>
 
-          {/* Home */}
+          {/* Home Page */}
           <Route
             path="/"
             element={
               <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-10 md:py-12">
-                <HeroCarousel />
+                {/* HeroCarousel ko yahan se hata diya kyunki upar already render ho raha hai */}
+
                 <div className="mx-auto max-w-screen-2xl mt-10">
                   <div className="grid lg:grid-cols-3 gap-6 lg:gap-10">
                     <div className="lg:col-span-2">
@@ -171,12 +167,9 @@ function AppContent() {
             }
           />
 
-          {/* Payment */}
+          {/* Other Routes */}
           <Route path="/payment-summary" element={<FssaiPaymentSummary />} />
-
-          {/* Admin */}
           <Route path="/admin" element={<AdminLogin />} />
-
           <Route
             path="/admin/dashboard"
             element={
@@ -186,10 +179,10 @@ function AppContent() {
             }
           />
 
-          {/* Static Pages */}
           <Route path="/refund-policy" element={<RefundPolicyPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/term-condition" element={<TermsAndConditionsPage />} />
+          <Route path="/privacy-policy" element={<FSSAIPolicyPage />} />
           <Route path="/disclaimer" element={<DisclaimerPage />} />
 
           {/* 404 */}
@@ -212,7 +205,6 @@ function AppContent() {
     </div>
   );
 }
-
 
 function App() {
   return (

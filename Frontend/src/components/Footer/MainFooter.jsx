@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowUp, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 
-import Logo from "../../Assest/Logo.png";
+import Logo from "../../Assest/Fssai-footer.png";
 import azadi from "../../Assest/azadi.png";
 
 export default function MainFooter() {
@@ -78,6 +78,7 @@ export default function MainFooter() {
                 { name: "Contact Us", path: "/contact" },
                 { name: "Refund Policy", path: "/refund-policy" },
                 { name: "Terms & Conditions", path: "/term-condition" },
+                { name: "Privacy Policy", path: "/privacy-policy" },
                 { name: "Disclaimer", path: "/disclaimer" },
               ].map((item) => (
                 <li key={item.name}>
