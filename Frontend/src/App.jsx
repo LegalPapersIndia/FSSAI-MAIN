@@ -24,6 +24,7 @@ import AdminDashboard from './components/Admin/AdminDashboard';
 import AdminLogin from './components/Admin/AdminLogin';
 
 
+// ✅ Clear storage
 function ClearStorageOnLoad() {
   useEffect(() => {
     localStorage.removeItem("fssaiFormDraft");
@@ -33,6 +34,7 @@ function ClearStorageOnLoad() {
   return null;
 }
 
+// ✅ Scroll to top
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -41,6 +43,7 @@ function ScrollToTop() {
   return null;
 }
 
+// ✅ Protected Route
 function ProtectedRoute({ children }) {
   const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
   if (!isLoggedIn) {
@@ -49,6 +52,7 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
+// ✅ Private Consultancy Marquee
 function PrivateConsultancyMarquee() {
   return (
     <div className="bg-gradient-to-r from-green-700 to-teal-800 text-white py-2.5 shadow-md overflow-hidden z-10">
@@ -68,6 +72,7 @@ function PrivateConsultancyMarquee() {
   );
 }
 
+// ✅ Back to Top
 function BackToTop() {
   const [visible, setVisible] = useState(false);
 
@@ -92,7 +97,6 @@ function BackToTop() {
 function AppContent() {
   const location = useLocation();
   const isHome = location.pathname === '/';
-  const showNavbar = isHome;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -100,7 +104,8 @@ function AppContent() {
       <ClearStorageOnLoad />
       <TopBar />
 
-      {showNavbar && (
+      {/* Navbar - Only on Home */}
+      {isHome && (
         <Navbar
           navItems={[
             { label: "FSSAI REGISTRATION", to: "#registration-form" },
@@ -124,15 +129,18 @@ function AppContent() {
         />
       )}
 
-      {showNavbar && <PrivateConsultancyMarquee />}
+      {/* Private Consultancy Marquee - Only on Home */}
+      {isHome && <PrivateConsultancyMarquee />}
 
-      {showNavbar && (
-        <div className="-mt-4 md:-mt-5 lg:-mt-6">   {/* ← Space kam kiya yahan */}
+      {/* HeroCarousel with reduced gap - Only on Home */}
+      {isHome && (
+        <div className="-mt-4 md:-mt-5 lg:-mt-6">
           <HeroCarousel />
         </div>
       )}
 
-      {!showNavbar && <HeroCarousel />}
+      {/* HeroCarousel on other pages (normal, no negative margin) */}
+      {!isHome && <HeroCarousel />}
 
       <ScrollToTop />
       <ScrollToHash />
@@ -145,8 +153,6 @@ function AppContent() {
             path="/"
             element={
               <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-10 md:py-12">
-                {/* HeroCarousel ko yahan se hata diya kyunki upar already render ho raha hai */}
-
                 <div className="mx-auto max-w-screen-2xl mt-10">
                   <div className="grid lg:grid-cols-3 gap-6 lg:gap-10">
                     <div className="lg:col-span-2">

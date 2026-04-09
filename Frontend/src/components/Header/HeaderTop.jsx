@@ -14,7 +14,7 @@ export default function HeaderTop({ handleScroll }) {
               className="flex items-center gap-2 hover:text-orange-100 transition-colors"
             >
               <span>📧</span>
-              info@fssaifood-india.org
+              info@foodindia-registration.org
             </a>
             <span className="hidden sm:inline text-white/60">|</span>
             <a
