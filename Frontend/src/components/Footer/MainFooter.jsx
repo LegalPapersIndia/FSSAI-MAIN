@@ -9,14 +9,11 @@ export default function MainFooter() {
 
   return (
     <footer className="bg-gradient-to-b from-[#0f244a] via-[#142e4f] to-[#0d1b3a] text-gray-300 pt-12 pb-10 relative overflow-hidden">
-
       {/* Tricolor Top Border */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-white to-green-600"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-screen-2xl">
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-
           {/* Notice */}
           <div className="space-y-5">
             <h3 className="text-orange-400 font-bold text-xl tracking-wide">
@@ -24,13 +21,18 @@ export default function MainFooter() {
             </h3>
 
             <p className="text-sm leading-relaxed opacity-90">
-              This is a <span className="font-semibold text-yellow-400">PRIVATE CONSULTANCY</span> portal. 
-              We provide professional assistance for <b>FSSAI Food License Registration</b>, 
-              application filling, document preparation and compliance support.
+              This is a{" "}
+              <span className="font-semibold text-yellow-400">
+                PRIVATE CONSULTANCY
+              </span>{" "}
+              portal. We provide professional assistance for{" "}
+              <b>FSSAI Food License Registration</b>, application filling,
+              document preparation and compliance support.
             </p>
 
             <p className="text-xs opacity-80 mt-4">
-              © {new Date().getFullYear()} FSSAI Food License Portal. All Rights Reserved.
+              © {new Date().getFullYear()} FSSAI Food License Portal. All Rights
+              Reserved.
             </p>
           </div>
 
@@ -108,13 +110,11 @@ export default function MainFooter() {
 
           {/* Trusted Logos */}
           <div className="space-y-6 flex flex-col items-center md:items-start">
-
             <h3 className="text-orange-400 font-bold text-xl tracking-wide md:self-start">
               Trusted By
             </h3>
 
             <div className="flex flex-wrap justify-center md:justify-start gap-6 md:gap-10">
-
               <div className="relative group">
                 <img
                   src={azadi}
@@ -134,22 +134,31 @@ export default function MainFooter() {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-green-500/20 to-transparent opacity-0 group-hover:opacity-70 transition-opacity rounded-full blur-sm"></div>
               </div>
-
             </div>
-
           </div>
-
         </div>
 
         {/* Bottom Disclaimer */}
         <div className="mt-12 pt-8 border-t border-gray-600/50 text-center text-sm opacity-80">
           <p>
-            This is a private consultancy service portal. All fees charged are for
-            professional assistance and documentation services only. We are not
-            associated with the Government or FSSAI authority.
+            This is not a Government run website and the form is not the actual
+            registration form, it is just to collect information from our
+            clients so that our expert can easily understand their business or
+            needs. By proceeding forward with this website you are aware that we
+            are a private company managing this website and providing assistance
+            based on the request from our customers and the fee collected on
+            this website is a consultancy fee.
           </p>
         </div>
 
+        {/* New Copyright Line - Added as requested */}
+        <div className="mt-6 pt-4 border-t border-gray-600/30 text-center">
+          <p className="text-xs text-gray-400">
+            Copyright © 2026 EASQUES | All Rights Reserved | Website Design,
+            Developed &amp; Google Promotion by{" "}
+            <span className="text-gray-300 font-medium">EASQUES</span>.
+          </p>
+        </div>
       </div>
     </footer>
   );
