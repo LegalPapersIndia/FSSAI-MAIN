@@ -12,11 +12,9 @@ export default function AdminDashboard() {
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-  // Fetch leads with proper Basic Auth
   const fetchLeads = async () => {
     try {
       const credentials = sessionStorage.getItem('adminCredentials');
-      
       if (!credentials) {
         sessionStorage.clear();
         navigate('/admin');
@@ -38,22 +36,18 @@ export default function AdminDashboard() {
         return;
       }
 
-      if (!response.ok) {
-        throw new Error(`Server Error: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`Server Error: ${response.status}`);
 
       const data = await response.json();
       setLeads(Array.isArray(data) ? data : []);
-      
     } catch (error) {
       console.error('Fetch Leads Error:', error);
-      alert("Unable to fetch leads. Please check if backend is running.");
+      alert("Unable to fetch leads. Please check backend.");
     } finally {
       setLoading(false);
     }
   };
 
-  // Check login and fetch data on component mount
   useEffect(() => {
     const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
     const credentials = sessionStorage.getItem('adminCredentials');
@@ -76,45 +70,37 @@ export default function AdminDashboard() {
     fetchLeads();
   };
 
-  // Filter leads with safe fallback for rawPayload
+  // Safe Getter Function - FSSAI ke liye
+  const getField = (lead, shortName, longName) => {
+    return (
+      lead[shortName] || 
+      lead.rawPayload?.[longName] || 
+      lead.rawPayload?.[shortName] || 
+      '-'
+    );
+  };
+
+  // Filtered Leads
   const filteredLeads = useMemo(() => {
+    const searchLower = searchTerm.toLowerCase().trim();
+
     return leads.filter((lead) => {
-      const searchLower = searchTerm.toLowerCase().trim();
-
-      const applicantName = (
-        lead.applicant_name || 
-        lead.rawPayload?.['ctl00$ContentPlaceHolder1$txtName'] || 
-        lead.rawPayload?.applicant_name || 
-        ''
-      ).toLowerCase();
-
-      const mobileNo = (
-        lead.mobile || 
-        lead.rawPayload?.['ctl00$ContentPlaceHolder1$txtPhone1'] || 
-        lead.rawPayload?.mobile || 
-        ''
-      );
-
-      const emailId = (
-        lead.email || 
-        lead.rawPayload?.['ctl00$ContentPlaceHolder1$txtEmail'] || 
-        lead.rawPayload?.email || 
-        ''
-      ).toLowerCase();
+      const name = getField(lead, 'applicant_name', 'ctl00$ContentPlaceHolder1$txtName').toLowerCase();
+      const mobile = getField(lead, 'mobile', 'ctl00$ContentPlaceHolder1$txtPhone1');
+      const email = getField(lead, 'email', 'ctl00$ContentPlaceHolder1$txtEmail').toLowerCase();
 
       const matchesSearch = 
-        applicantName.includes(searchLower) ||
-        mobileNo.includes(searchTerm) ||
-        emailId.includes(searchLower);
+        name.includes(searchLower) ||
+        mobile.includes(searchTerm) ||
+        email.includes(searchLower);
 
-      const matchesStatus = 
-        filterStatus === 'all' || lead.status === filterStatus;
+      const matchesStatus = filterStatus === 'all' || lead.status === filterStatus;
 
       return matchesSearch && matchesStatus;
     });
   }, [leads, searchTerm, filterStatus]);
 
-  // Export to Excel
+  // Export to Excel - FSSAI Specific
   const exportToExcel = () => {
     if (filteredLeads.length === 0) {
       alert("No leads to export!");
@@ -123,14 +109,16 @@ export default function AdminDashboard() {
 
     const exportData = filteredLeads.map((lead) => ({
       "Date & Time": new Date(lead.submittedAt || lead.createdAt || Date.now()).toLocaleString(),
-      "Applicant Name": lead.applicant_name || 
-                       lead.rawPayload?.['ctl00$ContentPlaceHolder1$txtName'] || '-',
-      "Mobile": lead.mobile || 
-               lead.rawPayload?.['ctl00$ContentPlaceHolder1$txtPhone1'] || '-',
-      "Email": lead.email || 
-              lead.rawPayload?.['ctl00$ContentPlaceHolder1$txtEmail'] || '-',
-      "Nature of Business": lead.nature_of_business || '-',
-      "State": lead.state || '-',
+      "Application Type": getField(lead, 'application_type', 'ctl00$ContentPlaceHolder1$ddlApplicationType'),
+      "Applicant Name": getField(lead, 'applicant_name', 'ctl00$ContentPlaceHolder1$txtName'),
+      "Mobile": getField(lead, 'mobile', 'ctl00$ContentPlaceHolder1$txtPhone1'),
+      "Email": getField(lead, 'email', 'ctl00$ContentPlaceHolder1$txtEmail'),
+      "Nature of Business": getField(lead, 'nature_of_business', 'ctl00$ContentPlaceHolder1$ddlNatureBusiness'),
+      "Food Category": getField(lead, 'food_category', 'ctl00$ContentPlaceHolder1$ddlFoodCategory'),
+      "Designation": getField(lead, 'designation', 'ctl00$ContentPlaceHolder1$ddlDesignition'),
+      "State": getField(lead, 'state', 'ctl00$ContentPlaceHolder1$ddlState'),
+      "City": getField(lead, 'city', 'ctl00$ContentPlaceHolder1$txtCity'),
+      "Pincode": getField(lead, 'pin', 'ctl00$ContentPlaceHolder1$txtPin'),
       "Status": lead.status || 'new',
     }));
 
@@ -145,8 +133,7 @@ export default function AdminDashboard() {
   };
 
   const viewRawPayload = (lead) => {
-    const payload = lead.rawPayload || lead;
-    alert(JSON.stringify(payload, null, 2));
+    alert(JSON.stringify(lead.rawPayload || lead, null, 2));
   };
 
   if (loading) {
@@ -154,7 +141,7 @@ export default function AdminDashboard() {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="animate-spin h-12 w-12 border-4 border-green-600 border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p className="text-xl text-gray-600">Loading leads...</p>
+          <p className="text-xl text-gray-600">Loading FSSAI leads...</p>
         </div>
       </div>
     );
@@ -163,7 +150,6 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
-
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
           <div>
@@ -172,24 +158,13 @@ export default function AdminDashboard() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <button 
-              onClick={handleRefresh}
-              className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-2xl flex items-center gap-2 transition"
-            >
+            <button onClick={handleRefresh} className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-2xl flex items-center gap-2">
               🔄 Refresh
             </button>
-
-            <button 
-              onClick={exportToExcel}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl flex items-center gap-2 transition"
-            >
+            <button onClick={exportToExcel} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl flex items-center gap-2">
               📥 Export to Excel
             </button>
-
-            <button 
-              onClick={handleLogout}
-              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-2xl flex items-center gap-2 transition"
-            >
+            <button onClick={handleLogout} className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-2xl flex items-center gap-2">
               Logout
             </button>
           </div>
@@ -202,13 +177,12 @@ export default function AdminDashboard() {
             placeholder="Search by name, mobile or email..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 p-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 text-lg"
+            className="flex-1 p-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500"
           />
-
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="p-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 text-lg"
+            className="p-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500"
           >
             <option value="all">All Status</option>
             <option value="new">New</option>
@@ -218,10 +192,10 @@ export default function AdminDashboard() {
           </select>
         </div>
 
-        {/* Leads Table */}
+        {/* Table */}
         <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-full">
+            <table className="w-full">
               <thead className="bg-gray-900 text-white">
                 <tr>
                   <th className="p-5 text-left">Date & Time</th>
@@ -229,6 +203,7 @@ export default function AdminDashboard() {
                   <th className="p-5 text-left">Mobile</th>
                   <th className="p-5 text-left">Email</th>
                   <th className="p-5 text-left">Nature of Business</th>
+                  <th className="p-5 text-left">Food Category</th>
                   <th className="p-5 text-left">State</th>
                   <th className="p-5 text-left">Status</th>
                   <th className="p-5 text-center">Action</th>
@@ -237,42 +212,41 @@ export default function AdminDashboard() {
               <tbody className="divide-y divide-gray-200">
                 {filteredLeads.length > 0 ? (
                   filteredLeads.map((lead) => (
-                    <tr key={lead._id || Math.random()} className="hover:bg-gray-50 transition">
+                    <tr key={lead._id} className="hover:bg-gray-50">
                       <td className="p-5">
                         {new Date(lead.submittedAt || lead.createdAt).toLocaleString()}
                       </td>
                       <td className="p-5 font-medium">
-                        {lead.applicant_name || 
-                         lead.rawPayload?.['ctl00$ContentPlaceHolder1$txtName'] || '-'}
+                        {getField(lead, 'applicant_name', 'ctl00$ContentPlaceHolder1$txtName')}
                       </td>
                       <td className="p-5">
-                        {lead.mobile || 
-                         lead.rawPayload?.['ctl00$ContentPlaceHolder1$txtPhone1'] || '-'}
+                        {getField(lead, 'mobile', 'ctl00$ContentPlaceHolder1$txtPhone1')}
                       </td>
                       <td className="p-5">
-                        {lead.email || 
-                         lead.rawPayload?.['ctl00$ContentPlaceHolder1$txtEmail'] || '-'}
+                        {getField(lead, 'email', 'ctl00$ContentPlaceHolder1$txtEmail')}
                       </td>
                       <td className="p-5">
-                        {lead.nature_of_business || '-'}
+                        {getField(lead, 'nature_of_business', 'ctl00$ContentPlaceHolder1$ddlNatureBusiness')}
                       </td>
                       <td className="p-5">
-                        {lead.state || '-'}
+                        {getField(lead, 'food_category', 'ctl00$ContentPlaceHolder1$ddlFoodCategory')}
+                      </td>
+                      <td className="p-5">
+                        {getField(lead, 'state', 'ctl00$ContentPlaceHolder1$ddlState')}
                       </td>
                       <td className="p-5">
                         <span className={`px-4 py-1.5 rounded-full text-xs font-semibold ${
                           lead.status === 'new' ? 'bg-blue-100 text-blue-700' :
-                          lead.status === 'contacted' ? 'bg-yellow-100 text-yellow-700' :
-                          lead.status === 'paid' ? 'bg-purple-100 text-purple-700' :
+                          lead.status === 'contacted' ? 'bg-yellow-100 text-yellow-700' : 
                           'bg-green-100 text-green-700'
                         }`}>
-                          {lead.status ? lead.status.charAt(0).toUpperCase() + lead.status.slice(1) : 'New'}
+                          {lead.status?.charAt(0).toUpperCase() + lead.status?.slice(1) || 'New'}
                         </span>
                       </td>
                       <td className="p-5 text-center">
                         <button
                           onClick={() => viewRawPayload(lead)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl text-sm font-medium transition"
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl text-sm"
                         >
                           View Raw
                         </button>
@@ -281,8 +255,8 @@ export default function AdminDashboard() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="8" className="p-20 text-center text-gray-500 text-lg">
-                      No leads found matching your search criteria.
+                    <td colSpan="9" className="p-16 text-center text-gray-500">
+                      No leads found
                     </td>
                   </tr>
                 )}
