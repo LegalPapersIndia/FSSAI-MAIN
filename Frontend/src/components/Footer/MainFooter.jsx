@@ -25,7 +25,7 @@ export default function MainFooter() {
               <span className="font-semibold text-yellow-400">
                 PRIVATE CONSULTANCY
               </span>{" "}
-              portal. We provide professional assistance for{" "}
+              portal owned by <b>EASQUES</b>. We provide professional assistance for{" "}
               <b>FSSAI Food License Registration</b>, application filling,
               document preparation and compliance support.
             </p>
@@ -80,6 +80,7 @@ export default function MainFooter() {
                 { name: "Contact Us", path: "/contact" },
                 { name: "Refund Policy", path: "/refund-policy" },
                 { name: "Terms & Conditions", path: "/term-condition" },
+                { name: "About Us", path: "/about" },
                 { name: "Privacy Policy", path: "/privacy-policy" },
                 { name: "Disclaimer", path: "/disclaimer" },
               ].map((item) => (
@@ -158,6 +159,7 @@ export default function MainFooter() {
             Developed &amp; Google Promotion by{" "}
             <span className="text-gray-300 font-medium">EASQUES</span>.
           </p>
+          <p>GST Number - 09PVZPS0906L1ZA</p>
         </div>
       </div>
     </footer>
