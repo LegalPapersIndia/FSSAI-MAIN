@@ -65,14 +65,12 @@ function PrivateConsultancyMarquee() {
       <div className="marquee-container relative w-full">
         <div className="marquee inline-flex whitespace-nowrap text-sm font-medium tracking-wide animate-marquee">
           <span className="mx-16">
-            This is a private consultancy self-registration portal for FSSAI
-            license Owned by <b>EASQUES</b> . Portal fees are consultancy in
+             ⚠️ This is a private consultancy self-registration portal for Food Certificate Owned by <b>EASQUES</b> . Portal fees are consultancy in
             nature.
           </span>
-          <span className="mx-16">
-            This is a private consultancy self-registration portal for FSSAI
-            license Owned by <b>EASQUES</b> . Portal fees are consultancy in
-            nature.
+            <span className="mx-16">
+              ⚠️ This is a private consultancy self-registration portal for Food Certificate Owned by <b>EASQUES</b> . Portal fees are consultancy in
+              nature.
           </span>
         </div>
       </div>
@@ -115,9 +113,9 @@ function AppContent() {
       {isHome && (
         <Navbar
           navItems={[
-            { label: "FSSAI REGISTRATION", to: "#registration-form" },
-            { label: "FSSAI MODIFICATION", to: "#registration-form" },
-            { label: "FSSAI RENEWAL/UPDATE", to: "#registration-form" },
+            { label: "REGISTRATION", to: "#registration-form" },
+            { label: "MODIFICATION", to: "#registration-form" },
+            { label: "RENEWAL/UPDATE", to: "#registration-form" },
             { label: "ABOUT US", to: "/About" },
             { label: "PROCEDURE", to: "#procedure" },
             { label: "BENEFITS", to: "#benefits" },

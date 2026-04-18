@@ -21,7 +21,7 @@ export default function TermsAndConditionsPage() {
           </p>
           <p className="leading-relaxed">
             This is a <span className="font-bold text-green-700">private consultancy portal</span> providing assistance for 
-            <span className="font-bold text-green-700"> FSSAI Food License Registration</span>. 
+            <span className="font-bold text-green-700"> Food Registration</span>. 
             All portal fees are <span className="font-bold text-green-700">consultancy in nature</span> and are not government fees.
           </p>
         </div>
@@ -29,14 +29,14 @@ export default function TermsAndConditionsPage() {
         {/* Introduction */}
         <section className="mb-12">
           <p className="text-gray-700 leading-relaxed mb-6 text-lg">
-            Welcome to <span className="font-semibold">fssaifood-india.org</span>. 
+            Welcome to <span className="font-semibold">foodindia-registration.org</span>. 
             These Terms and Conditions govern your use of this website and the services we provide.
             By accessing or using this portal, you agree to comply with these terms.
           </p>
 
           <p className="text-gray-700 leading-relaxed">
             This portal is operated by a <strong>private consultancy firm</strong> and is 
-            <strong> not affiliated with or endorsed by the Food Safety and Standards Authority of India (FSSAI)</strong> 
+            <strong> not affiliated with or endorsed by the Food Safety and Standards Authority of India</strong> 
             or any other Government authority.
           </p>
         </section>
@@ -64,7 +64,7 @@ export default function TermsAndConditionsPage() {
 
             <p className="text-gray-700 leading-relaxed">
               Certain information on this website may be sourced from third-party providers
-              or government websites including the official FSSAI portal.
+              or government websites including the official portal.
               Such information is provided for general informational purposes only.
             </p>
 
@@ -129,7 +129,7 @@ export default function TermsAndConditionsPage() {
             <ul className="list-disc pl-6 space-y-2 text-gray-700">
               <li>We do not guarantee the accuracy of information</li>
               <li>We do not ensure uninterrupted access to the website</li>
-              <li>We do not guarantee approval of FSSAI registration applications</li>
+              <li>We do not guarantee approval of registration applications</li>
               <li>We disclaim warranties of merchantability or fitness for a specific purpose</li>
             </ul>
           </section>
@@ -145,9 +145,9 @@ export default function TermsAndConditionsPage() {
             </p>
 
             <ul className="list-disc pl-6 space-y-2 text-gray-700">
-              <li>FSSAI Basic Registration</li>
-              <li>FSSAI State License</li>
-              <li>FSSAI Central License</li>
+              <li>Basic Registration</li>
+              <li>State License</li>
+              <li>Central License</li>
               <li>License Renewal and Modification</li>
               <li>Food business compliance assistance</li>
             </ul>
@@ -165,7 +165,7 @@ export default function TermsAndConditionsPage() {
 
             <p className="text-gray-700 leading-relaxed">
               Users agree to comply with the Food Safety and Standards Act,
-              FSSAI regulations, and all applicable Indian laws while using this portal.
+              regulations, and all applicable Indian laws while using this portal.
             </p>
           </section>
 
@@ -193,7 +193,7 @@ export default function TermsAndConditionsPage() {
             </p>
 
             <div className="space-y-3 text-gray-700">
-              <p><span className="font-semibold">Email:</span> info@fssaifood-india.org</p>
+              <p><span className="font-semibold">Email:</span> info@foodindia-registration.org</p>
               <p><span className="font-semibold">Mobile:</span> +91-9211037448</p>
             </div>
           </section>

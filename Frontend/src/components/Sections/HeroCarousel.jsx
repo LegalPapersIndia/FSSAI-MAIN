@@ -9,20 +9,20 @@ const slides = [
   {
     id: 1,
     imageUrl: banner1,
-    alt: "Food safety license registration",
-    caption: "Apply for FSSAI Food License Online",
+    alt: "Food safety registration",
+    caption: "Apply for Food Certificate Online",
   },
   {
     id: 2,
     imageUrl: banner2,
     alt: "Food business compliance India",
-    caption: "Start Your Food Business with FSSAI Registration",
+    caption: "Start Your Food Business with Registration",
   },
   {
     id: 3,
     imageUrl: banner3,
-    alt: "FSSAI certification India",
-    caption: "Get Your FSSAI License in Simple Steps",
+    alt: "Food registration India",
+    caption: "Get Your Certificate in Simple Steps",
   },
 ];
 
@@ -68,10 +68,10 @@ export default function HeroCarousel() {
         <div className="marquee-container relative w-full">
           <div className="marquee inline-flex whitespace-nowrap text-sm sm:text-base font-semibold tracking-wide">
             <span className="mx-16">
-              This is a private consultancy self-registration portal for FSSAI Registration and License. Portal fees are consultancy in nature.
+             ⚠️ This is a private consultancy self-registration portal for Food Registration. Portal fees are consultancy in nature.
             </span>
             <span className="mx-16">
-              This is a private consultancy self-registration portal for FSSAI Registration and License. Portal fees are consultancy in nature.
+             ⚠️ This is a private consultancy self-registration portal for Food Registration. Portal fees are consultancy in nature.
             </span>
           </div>
         </div>

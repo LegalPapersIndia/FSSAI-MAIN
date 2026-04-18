@@ -55,11 +55,11 @@ export default function HeaderTop({ handleScroll }) {
     <div className="marquee flex whitespace-nowrap text-xs sm:text-sm md:text-base font-medium tracking-wide animate-marquee">
       
       <span className="px-6 sm:px-10 md:px-14 text-center">
-        A MANUFACTURER OF THE PACKED FOOD PRODUCTS AND IMPORT, EXPORT, E-COMMERCE ARE NOT ELIGIBLE FOR FSSAI REGISTRATION...
+        A MANUFACTURER OF THE PACKED FOOD PRODUCTS AND IMPORT, EXPORT, E-COMMERCE ARE NOT ELIGIBLE FOR REGISTRATION.
       </span>
 
       <span className="px-6 sm:px-10 md:px-14 text-center">
-        A MANUFACTURER OF THE PACKED FOOD PRODUCTS AND IMPORT, EXPORT, E-COMMERCE ARE NOT ELIGIBLE FOR FSSAI REGISTRATION...
+        A MANUFACTURER OF THE PACKED FOOD PRODUCTS AND IMPORT, EXPORT, E-COMMERCE ARE NOT ELIGIBLE FOR REGISTRATION.
       </span>
 
     </div>
@@ -85,10 +85,10 @@ export default function HeaderTop({ handleScroll }) {
 
             <div>
               <h1 className="text-xl xs:text-2xl sm:text-2.5xl md:text-3xl lg:text-4xl font-extrabold tracking-tight drop-shadow-lg leading-tight">
-                भारतीय खाद्य सुरक्षा लाइसेंस कंसल्टेंसी ऑनलाइन पोर्टल
+                INDIA'S FOOD SAFETY LICENSE CONSULTANCY ONLINE PORTAL
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold mt-0.5 opacity-90">
-                INDIA'S FOOD SAFETY LICENSE CONSULTANCY ONLINE PORTAL
+                भारतीय खाद्य सुरक्षा लाइसेंस कंसल्टेंसी ऑनलाइन पोर्टल
               </p>
             </div>
           </div>

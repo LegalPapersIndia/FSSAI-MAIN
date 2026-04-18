@@ -26,13 +26,8 @@ export default function MainFooter() {
                 PRIVATE CONSULTANCY
               </span>{" "}
               portal owned by <b>EASQUES</b>. We provide professional assistance for{" "}
-              <b>FSSAI Food License Registration</b>, application filling,
+              <b>Food Registration</b>, application filling,
               document preparation and compliance support.
-            </p>
-
-            <p className="text-xs opacity-80 mt-4">
-              © {new Date().getFullYear()} FSSAI Food License Portal. All Rights
-              Reserved.
             </p>
           </div>
 
@@ -44,9 +39,9 @@ export default function MainFooter() {
 
             <ul className="space-y-2.5 text-sm">
               {[
-                { name: "Apply FSSAI License", hash: "registration-form" },
-                { name: "FSSAI License Renewal", hash: "registration-form" },
-                { name: "FSSAI Modification", hash: "registration-form" },
+                { name: "Apply Certificate", hash: "registration-form" },
+                { name: "Certificate Renewal", hash: "registration-form" },
+                { name: "Certificate Modification", hash: "registration-form" },
                 { name: "Procedure", hash: "procedure" },
                 { name: "Benefits", hash: "benefits" },
                 { name: "FAQs", hash: "faq" },

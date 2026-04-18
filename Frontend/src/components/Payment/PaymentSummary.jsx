@@ -140,7 +140,7 @@ export default function PaymentSummary() {
         <div className="p-6 md:p-10 lg:p-12 bg-white">
           <div className="text-center mb-10 md:mb-14 lg:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
-              Choose Your FSSAI Licence Type
+              Choose Your Licence Type
             </h2>
             <p className="mt-4 text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
               Select based on your annual turnover and business scale
