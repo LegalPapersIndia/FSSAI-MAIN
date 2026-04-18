@@ -29,6 +29,7 @@ import ScrollToHash from "./components/common/ScrollToHash";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AboutUsPage from "./components/Pages/Aboutus";
+import FSSAITrainingWebinarSection from "./components/Sections/Training";
 
 // ✅ Clear storage
 function ClearStorageOnLoad() {
@@ -174,6 +175,7 @@ function AppContent() {
 
                 <div className="mx-auto max-w-screen-2xl mt-16 space-y-20">
                   <ProcedureSection />
+                  <FSSAITrainingWebinarSection />
                   <BenefitsSection />
                   <FaqSection />
                 </div>
