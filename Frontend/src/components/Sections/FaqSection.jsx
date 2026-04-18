@@ -9,7 +9,7 @@ export default function FSSAIFAQSection() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-gray-800 mb-10">
-          FSSAI License – Frequently Asked Questions
+          Food Registration – Frequently Asked Questions
         </h2>
 
         {/* Intro */}
