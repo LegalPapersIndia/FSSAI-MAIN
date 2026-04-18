@@ -43,7 +43,7 @@ export default function MainFooter() {
                 { name: "Certificate Renewal", hash: "registration-form" },
                 { name: "Certificate Modification", hash: "registration-form" },
                 { name: "Procedure", hash: "procedure" },
-                { name: "Training & Webinars", hash: "training" },
+                { name: "TRAINING & WEBINAR", hash: "training" },
                 { name: "Benefits", hash: "benefits" },
                 { name: "FAQs", hash: "faq" },
               ].map((item) => (

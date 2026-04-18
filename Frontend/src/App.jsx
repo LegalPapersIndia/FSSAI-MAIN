@@ -118,7 +118,7 @@ function AppContent() {
             { label: "MODIFICATION", to: "#registration-form" },
             { label: "RENEWAL/UPDATE", to: "#registration-form" },
             { label: "ABOUT US", to: "/About" },
-            { label: "Training & Webinars", to: "#training" },
+            { label: "TRAINING & WEBINARS", to: "#training" },
             { label: "PROCEDURE", to: "#procedure" },
             { label: "BENEFITS", to: "#benefits" },
             { label: "FAQ'S", to: "#faq" },
